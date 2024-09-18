@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .top-bar a {
+            margin-left: 15px;
+            color: white; /* White text color */
+            text-decoration: none;
+            font-weight: bold; /* Make the text bold */
+        }
+        .top-bar a:hover {
+            text-decoration: underline;
+        }
+        .logo-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .logo-link img {
+            width: 60px; /* Adjusted logo size */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .graph-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .graph-box {
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Light blue gradient */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        .graph-title {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Right Links -->
+    <div class="top-bar">
+        <a href="#">Dashboard</a>
+        <a href="#">Take Survey</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Logo -->
+    <a href="#" class="logo-link">
+        <img src="/home/apsit/Desktop/mayank/logo.png" alt="Logo">
+    </a>
+
+    <!-- Graph Container -->
+    <div class="graph-container">
+        <div class="graph-box">
+            <h3 class="graph-title">Top 5 Performers</h3>
+            <canvas id="myBarChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['name 1', 'name 2', 'name 3', 'name 4', 'name 5'], // Updated labels
+                datasets: [{
+                    label: 'Marks',
+                    data: [50, 75, 90, 60, 85], // Updated data values
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 100 // Ensure the maximum value on the y-axis is 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms2</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin-bottom: 20px;
+        }
+        
+        .teaching-process-container {
+            margin-top: 150px;
+        }
+
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .top-bar a {
+            margin-left: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .top-bar a:hover {
+            text-decoration: underline;
+        }
+
+        .logo-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .logo-link img {
+            width: 60px;
+            height: auto;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+
+        .table-box {
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .table-box:hover {
+            transform: scale(1.02);
+        }
+
+        .table-title {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #00796b;
+            transition: color 0.3s;
+        }
+
+        .table-title:hover {
+            color: #004d40;
+        }
+
+        .total-box {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .total-box span {
+            font-size: 24px;
+            color: #ff9728;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        /* Spacing between forms */
+        .form-section {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Right Links -->
+    <div class="top-bar">
+        <a href="#">Dashboard</a>
+        <a href="#">Take Survey</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Logo -->
+    <a href="#" class="logo-link">
+        <img src="logo.png" alt="Logo">
+    </a>
+
+    <!-- Teaching Process Form -->
+    <div class="table-container teaching-process-container">
+        <div class="table-box">
+            <h3 class="table-title">Department activities</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Semester</th>
+                        <th>Activity</th>
+                        <th>Points</th>
+                        <th>Order Copy</th>
+                        <th>Points by Higher Authority</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="teachingTable">
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" class="form-control" value="III" title="Enter Semester"></td>
+                        <td><input type="text" class="form-control" value="Lecture on Data Structures" title="Enter Activity"></td>
+                        <td><input type="number" class="form-control points" value="3" title="Enter Points" oninput="calculateTeachingTotal()"></td>
+                        <td><input type="text" class="form-control" value="Copy123.pdf" title="Enter Order Copy"></td>
+                        <td><input type="number" class="form-control authority-points" value="5" title="Points by Higher Authority"></td>
+                        <td><button class="btn btn-danger" onclick="removeRow(this, 'teachingTable')">-</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success" onclick="addTeachingRow()">+</button>
+        </div>
+        <div class="total-box">
+            Total Points: <span id="totalTeachingPoints">0</span>
+        </div>
+    </div>
+
+    <!-- Students Feedback Form -->
+    <div class="table-container form-section">
+        <div class="table-box">
+            <h3 class="table-title">Institute activities</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Semester</th>
+                        <th>Activity</th>
+                        <th>Points</th>
+                        <th>Order Copy</th>
+                        <th>Points by Higher Authority</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackTable">
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" class="form-control" value="III" title="Enter Semester"></td>
+                        <td><input type="text" class="form-control" value="Lecture on Data Structures" title="Enter Activity"></td>
+                        <td><input type="number" class="form-control points" value="4" title="Enter Points" oninput="calculateFeedbackTotal()"></td>
+                        <td><input type="text" class="form-control" value="Copy456.pdf" title="Enter Order Copy"></td>
+                        <td><input type="number" class="form-control authority-points" value="3" title="Points by Higher Authority"></td>
+                        <td><button class="btn btn-danger" onclick="removeRow(this, 'feedbackTable')">-</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success" onclick="addFeedbackRow()">+</button>
+        </div>
+        <div class="total-box">
+            Total Points Obtained: <span id="totalFeedbackPoints">0</span>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Add row to Teaching Process form
+        function addTeachingRow() {
+            var table = document.getElementById("teachingTable");
+            var rowCount = table.rows.length;
+            var row = table.insertRow();
+            row.innerHTML = `<td>${rowCount + 1}</td>
+                             <td><input type="text" class="form-control" title="Enter Semester"></td>
+                             <td><input type="text" class="form-control" title="Enter Activity"></td>
+                             <td><input type="number" class="form-control points" title="Enter Points" oninput="calculateTeachingTotal()"></td>
+                             <td><input type="text" class="form-control" title="Enter Order Copy"></td>
+                             <td><input type="number" class="form-control authority-points" title="Points by Higher Authority"></td>
+                             <td><button class="btn btn-danger" onclick="removeRow(this, 'teachingTable')">-</button></td>`;
+        }
+
+        // Calculate total points for Teaching Process
+        function calculateTeachingTotal() {
+            var rows = document.querySelectorAll("#teachingTable .points");
+            var totalPoints = 0;
+            rows.forEach(function (input) {
+                totalPoints += parseFloat(input.value) || 0;
+            });
+            document.getElementById("totalTeachingPoints").textContent = totalPoints.toFixed(2);
+        }
+
+        // Add row to Students Feedback form
+        function addFeedbackRow() {
+            var table = document.getElementById("feedbackTable");
+            var rowCount = table.rows.length;
+            var row = table.insertRow();
+            row.innerHTML = `<td>${rowCount + 1}</td>
+                             <td><input type="text" class="form-control" title="Enter Semester"></td>
+                             <td><input type="text" class="form-control" title="Enter Activity"></td>
+                             <td><input type="number" class="form-control points" title="Enter Points" oninput="calculateFeedbackTotal()"></td>
+                             <td><input type="text" class="form-control" title="Enter Order Copy"></td>
+                             <td><input type="number" class="form-control authority-points" title="Points by Higher Authority"></td>
+                             <td><button class="btn btn-danger" onclick="removeRow(this, 'feedbackTable')">-</button></td>`;
+        }
+
+        // Calculate total points for Students Feedback
+        function calculateFeedbackTotal() {
+            var rows = document.querySelectorAll("#feedbackTable .points");
+            var totalPoints = 0;
+            rows.forEach(function (input) {
+                totalPoints += parseFloat(input.value) || 0;
+            });
+            document.getElementById("totalFeedbackPoints").textContent = totalPoints.toFixed(2);
+        }
+
+        // Remove row from the table and recalculate totals
+        function removeRow(button, tableId) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            if (tableId === 'teachingTable') {
+                calculateTeachingTotal();
+            } else if (tableId === 'feedbackTable') {
+                calculateFeedbackTotal();
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Details Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            height: 130vh; /* Ensure there's enough height for scrolling */
+        }
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+        .top-bar a {
+            margin-left: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .top-bar a:hover {
+            text-decoration: underline;
+            color: #ff9800; /* Highlight color */
+        }
+        .logo-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+        .logo-link img {
+            width: 60px;
+            height: auto;
+        }
+        .content {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Slightly darker shadow */
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box; /* Ensure padding is included in the total width */
+            margin: 190px auto 0; /* Move down further */
+        }
+        .content h3 {
+            margin-bottom: 20px;
+        }
+        .content .form-group {
+            text-align: left;
+            margin-bottom: 15px; /* Adjust spacing between form fields */
+        }
+        .btn-next {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-next:hover {
+            background-color: #ff9800;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Right Links -->
+    <div class="top-bar">
+        <a href="#">Dashboard</a>
+        <a href="#">Take Survey</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Logo -->
+    <a href="#" class="logo-link">
+        <img src="logo.png" alt="Logo">
+    </a>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h3>Faculty Details Form</h3>
+        <form id="facultyForm">
+            <div class="form-group">
+                <label for="facultyName">Name of Faculty:</label>
+                <input type="text" class="form-control" id="facultyName" required>
+            </div>
+            <div class="form-group">
+                <label for="designation">Designation:</label>
+                <input type="text" class="form-control" id="designation" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" class="form-control" id="department" required>
+            </div>
+            <div class="form-group">
+                <label for="doj">Date of Joining:</label>
+                <input type="date" class="form-control" id="doj" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" class="form-control" id="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="qualifications">Educational Qualifications:</label>
+                <input type="text" class="form-control" id="qualifications" required>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience:</label>
+                <textarea class="form-control" id="experience" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="formFillingDate">Date of Form Filling:</label>
+                <input type="date" class="form-control" id="formFillingDate" required>
+            </div>
+            <button type="button" class="btn btn-primary btn-next" onclick="handleNext()">Next</button>
+        </form>
+    </div>
+
+    <!-- Script for Form Validation and User Feedback -->
+    <script>
+        function handleNext() {
+            const form = document.getElementById('facultyForm');
+            if (!form.checkValidity()) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+            // Simulate form submission or redirection
+            alert('Form submitted successfully! Proceeding to the next step...');
+            // Redirect to the next page or perform form submission here
+            // window.location.href = 'next-page-url.html'; // Uncomment and replace with actual URL
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
